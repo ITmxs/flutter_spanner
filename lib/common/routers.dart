@@ -1,0 +1,69 @@
+import 'package:spanners/dLoginOrOther/editPassword.dart';
+import 'package:spanners/dLoginOrOther/forget.dart';
+import 'package:spanners/spannerHome/attendance/add_attendance_rule.dart';
+import 'package:spanners/spannerHome/attendance/add_rest_record.dart';
+import 'package:spanners/spannerHome/attendance/attendanceShow.dart';
+import 'package:spanners/spannerHome/attendance/attendance_rule.dart';
+import 'package:spanners/spannerHome/attendance/update_attendance_rule.dart';
+import 'package:spanners/spannerHome/attendanceClock/attendance_clock.dart';
+import 'package:spanners/spannerHome/employee/view/addEmployee.dart';
+import 'package:spanners/spannerHome/employee/view/addGroup.dart';
+import 'package:spanners/spannerHome/employee/view/employeeDetail.dart';
+import 'package:spanners/spannerHome/employee/view/employeeManagement.dart';
+import 'package:spanners/spannerHome/employee/view/groupList.dart';
+import 'package:spanners/spannerHome/members/view/balanceRecharge.dart';
+import 'package:spanners/spannerHome/members/view/memberDetail.dart';
+import 'package:spanners/spannerHome/purchase/add_purchase.dart';
+import 'package:spanners/spannerHome/purchase/material_detail.dart';
+import 'package:spanners/spannerHome/purchase/purchase_detail.dart';
+import 'package:spanners/spannerHome/purchase/purchase_manage.dart';
+import 'package:spanners/spannerHome/purchase/stock_list.dart';
+import 'package:spanners/spannerHome/purchase/update_purchase.dart';
+import 'package:spanners/spannerHome/storage/addStorage.dart';
+import 'package:spanners/spannerHome/storage/storageDetail.dart';
+import 'package:spanners/spannerHome/storage/storageList.dart';
+import 'package:spanners/weCenter/about_us.dart';
+import 'package:spanners/weCenter/add_feedback.dart';
+import 'package:spanners/weCenter/myInfo.dart';
+import 'package:spanners/weCenter/share_setting.dart';
+import 'package:spanners/weCenter/shopInfo.dart';
+import 'package:spanners/weCenter/update_pay_password.dart';
+import 'clipping_demo2.dart';
+import 'clipping_picture_demo.dart';
+
+class Routers {
+  static Map routerMap = {
+    "balanceRecharge": BalanceRecharge(),
+    "memberDetail": MemberDetail(),
+    "employeeManagement": EmployeeManagement(),
+    "groupList": GroupList(),
+    "addGroup": AddGroup(),
+    "employeeDetail": EmployeeDetail(),
+    "addEmployee": AddEmployee(),
+    "editPassword": editPasswordView(),
+    "forgetView": forgetView(),
+    "storageList": StorageList(),
+    "addStorage": AddStorage(),
+    "storageDetail": StorageDetail(),
+    'clippingDemo2': ClippingDemo2(),
+    'clippingPictureDemo': ClippingPictureDemo(),
+    'addRestRecord': AddRestRecord(),
+    'attendanceRule': AttendanceRule(),
+    'addAttendanceRule': AddAttendanceRule(),
+    'attendanceShow': AttendanceShow(),
+    'myInfo': MyInfo(),
+    'shopInfo': ShopInfo(),
+    'shareSetting': ShareSetting(),
+    'addFeedback': AddFeedback(),
+    'aboutUs': AboutUs(),
+    'updatePayPassword': UpdatePayPassword(),
+    'updateAttendanceRule': UpdateAttendanceRule(),
+    'attendanceClock': AttendanceClock(),
+    'purchaseManage': PurchaseManage(),
+    'materialDetail': MaterialDetail(),
+    'addPurchase': AddPurchase(),
+    'stockList': StockList(),
+    'purchaseDetail': PurchaseDetail(),
+    'updatePurchase': UpdatePurchase(),
+  };
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "name":"Alice",
+    "id":"18745222791",
+    "avatar":"Assets/temp_icon.png"
+  },
+  {
+    "name":"阿发",
+    "id":"1000126",
+    "avatar":"Assets/temp_icon.png"
+  },
+  {
+    "name":"Bob",
+    "id":"14740246669",
+    "avatar":"Assets/temp_icon.png"
+  },
+  {
+    "name":"David",
+    "id":"1000125",
+    "avatar":"Assets/temp_icon.png"
+  }
+]

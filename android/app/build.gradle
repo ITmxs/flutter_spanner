@@ -1,0 +1,112 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+def keystorePropertiesFile = rootProject.file("key.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    compileSdkVersion 28
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "spanners.bro.store"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        multiDexEnabled true
+         ndk {           
+            abiFilters 'armeabi', 'armeabi-v7a', 'x86', 'x86_64', 'mips', 'mips64', 'arm64-v8a'
+        }
+        packagingOptions {
+        exclude 'META-INF/proguard/coroutines.pro'
+        }
+         manifestPlaceholders = [
+            JPUSH_PKGNAME : applicationId,
+            JPUSH_APPKEY : "51c5db59e04cd072089a9aab",
+            JPUSH_CHANNEL : "developer-default", 
+        ]
+        //个推配置
+        manifestPlaceholders = [
+        //生产
+    	GETUI_APP_ID    : "6lYUBvPC8mA2gQR4eDBj41",
+    	GETUI_APP_KEY   : "wXJiLBeJBq5VnhueHYKhK4",
+    	GETUI_APP_SECRET: "0HBPw2yZtT8I5g6h9ehDU",
+        // //开发
+        // GETUI_APP_ID    : "jfUtNJ5PQz6PjWbNQx06M7",
+    	// GETUI_APP_KEY   : "yXrNiePQW48dn3jKPmToy6",
+    	// GETUI_APP_SECRET: "ITKj9szgcr9RENQzZQHhQ1",
+        // 下面是多厂商配置，如需要开通使用请联系技术支持
+        // 如果不需要使用，预留空字段即可
+         XIAOMI_APP_ID   : "",
+         XIAOMI_APP_KEY  : "",
+         MEIZU_APP_ID    : "",
+         MEIZU_APP_KEY   : "",
+         HUAWEI_APP_ID   : "",
+         OPPO_APP_KEY   : "",
+         OPPO_APP_SECRET  : "",
+         VIVO_APP_ID   : "",
+         VIVO_APP_KEY  : ""
+    ]
+    }
+
+    signingConfigs {
+    release {
+        keyAlias keystoreProperties['keyAlias']
+        keyPassword keystoreProperties['keyPassword']
+        storeFile file(keystoreProperties['storeFile'])
+        storePassword keystoreProperties['storePassword']
+    }
+}
+
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            // Signing with the debug keys for now, so `flutter run --release` works.            
+           // signingConfig signingConfigs.debug
+           signingConfig signingConfigs.release
+        }
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+}
